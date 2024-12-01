@@ -16,7 +16,7 @@ impl Blockchain {
         let previous_block = self.chain.last().unwrap();
         let new_block = Block::new(previous_block.index + 1, previous_block.hash.clone(), data);
 
-        if new_block.is_valid(previous_block) {
+        if new_block.is_block_valid(previous_block) {
             self.chain.push(new_block);
         } else {
             panic!("Failed to add block: Block is invalid.");
@@ -28,7 +28,7 @@ impl Blockchain {
             let current_block = &self.chain[i];
             let previous_block = &self.chain[i - 1];
 
-            if !current_block.is_valid(previous_block) {
+            if !current_block.is_block_valid(previous_block) {
                 return false;
             }
         }

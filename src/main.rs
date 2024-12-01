@@ -1,14 +1,17 @@
 mod block;
 mod blockchain;
+mod constants;
 
 use blockchain::Blockchain;
+
+use log::{debug, error, info};
 
 fn main() {
     pretty_env_logger::init();
 
     // create a new blockchain
     let mut blockchain = Blockchain::new();
-    log::info!("{:?}", blockchain.chain[0]);
+    info!("{:?}", blockchain.chain[0]);
 
     // Add blocks
     blockchain.add_block("First block".to_string());
